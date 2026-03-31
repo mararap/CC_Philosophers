@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 19:24:53 by marapovi          #+#    #+#             */
-/*   Updated: 2025/11/25 19:32:03 by marapovi         ###   ########.fr       */
+/*   Created: 2026/03/31 19:11:22 by marapovi          #+#    #+#             */
+/*   Updated: 2026/03/31 19:11:23 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+// utils.c: Utility/helper functions
+#include "utils.h"
 
-#include <pthread.h>
-#include <sys/time.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-
-#endif //!PHILO_H
+// ...existing code...
