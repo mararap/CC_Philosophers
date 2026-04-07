@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/20 21:31:57 by marapovi          #+#    #+#              #
-#    Updated: 2026/04/07 11:56:55 by marapovi         ###   ########.fr        #
+#    Updated: 2026/04/07 22:58:41 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,12 @@ OBJ_DIR			:=		obj
 SRC_DIR			:=		src
 
 SRC 	:= 		main.c \
-				#<files>
+				init.c \
+				threads.c \
+				monitor.c \
+				utils.c \
+				error.c \
+				cleanup.c
 
 
 SRC				:=		$(addprefix $(SRC_DIR)/,$(SRC))
