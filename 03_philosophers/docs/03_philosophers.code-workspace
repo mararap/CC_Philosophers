@@ -2,9 +2,10 @@
 	"folders": [
 		{
 			"path": ".."
+		},
+		{
+			"path": "../../../Personal_gh/CommonCore_Documents/Circle_03/Philosophers"
 		}
 	],
-	"settings": {
-		"window.title": ""
-	}
+	"settings": {}
 }

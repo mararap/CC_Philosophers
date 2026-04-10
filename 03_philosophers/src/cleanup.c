@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:10:50 by marapovi          #+#    #+#             */
-/*   Updated: 2026/03/31 19:10:51 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/10 10:09:06 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// cleanup.c: Resource cleanup/freeing
+// Resource cleanup/freeing
 #include "philo.h"
 
-// ...existing code...
+

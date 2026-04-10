@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:12 by marapovi          #+#    #+#             */
-/*   Updated: 2026/03/31 19:11:13 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/10 10:10:04 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// monitor.c: Monitoring logic (death, meal count)
+// Monitoring logic (death, meal count)
 #include "philo.h"
 
-// ...existing code...
+
