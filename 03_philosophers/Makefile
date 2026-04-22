@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/20 21:31:57 by marapovi          #+#    #+#              #
-#    Updated: 2026/04/07 22:58:41 by marapovi         ###   ########.fr        #
+#    Updated: 2026/04/22 21:04:36 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,8 @@ SRC 	:= 		main.c \
 				monitor.c \
 				utils.c \
 				error.c \
-				cleanup.c
+				cleanup.c \
+				actions.c
 
 
 SRC				:=		$(addprefix $(SRC_DIR)/,$(SRC))

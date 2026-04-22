@@ -6,40 +6,30 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:17 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/10 12:30:40 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/22 21:11:54 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Philosopher thread routine and logic
 #include "philo.h"
 
-void	ph_take_forks(t_philo *p)
+static int	is_sim_over(t_dinner *d)
 {
-	t_fork_lock	*first;
-	t_fork_lock	*second;
-	
-	first = p->left;
-	second = p->right;
-	if (first > second)
+	pthread_mutex_lock(&d->dead_lock);
+	if (d->is_dead)
 	{
-		first = p->right;
-		second = p->left;
+		pthread_mutex_unlock(&d->dead_lock);
+		return (1);
 	}
-	pthread_mutex_lock(first);
-	ph_print_status(p, "has taken a fork");
-	pthread_mutex_lock(second);
-	ph_print_status(p, "has taken a fork");
+	pthread_mutex_unlock(&d->dead_lock);
+	return (0);	
 }
 
-void	ph_drop_forks(t_philo *p)
-{
-	pthread_mutex_unlock(p->left);
-	pthread_mutex_unlock(p->right);
-}
-
-void	*ph_routine(void *arg)
+static void	*ph_routine(void *arg)
 {
 	t_philo	*philo;
+
+	philo = (t_philo *)arg;
 	while (!is_sim_over(philo->dinner))
 	{
 		ph_take_forks(philo);
@@ -51,3 +41,33 @@ void	*ph_routine(void *arg)
 	return (NULL);
 }
 
+static	void	ph_join_threads(t_dinner *d, int n)
+{
+	while (n >= 0)
+	{
+		pthread_join(d->philo_arr[n].tid, NULL);
+		n--;
+	}
+}
+
+int	ph_start_threads(t_dinner *d)
+{
+	int	i;
+
+	i = 0;
+	while (i < d->philo_count)
+	{
+		if (pthread_create(&d->philo_arr[i].tid, NULL, ph_routine,
+				&d->philo_arr[i]) != 0)
+		{
+			pthread_mutex_lock(&d->dead_lock);
+			d->is_dead = 1;
+			pthread_mutex_unlock(&d->dead_lock);
+			ph_join_threads(d, i - 1);
+			return (1);
+		}
+		i++;
+	}
+	ph_join_threads(d, d->philo_count - 1);
+	return (0);
+}

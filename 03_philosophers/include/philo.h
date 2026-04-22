@@ -6,10 +6,11 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:14:34 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/10 10:06:07 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/22 21:06:10 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// structs and function prototypes
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -37,7 +38,7 @@ struct s_philo
 
 struct s_dinner
 {
-	int					philo_count;
+	int					philo_count; // number of philos = number of forks
 	long long			time_to_die;
 	long long			time_to_eat;
 	long long			time_to_sleep;
@@ -57,7 +58,27 @@ int						ph_atoui(const char *str);
 long long				ph_get_time_ms(void);
 void					ph_print_status(t_philo *philo, char *msg);
 
+// INIT
 
-// Add your structs, function prototypes, and macros here
+int						ph_init_dinner(t_dinner *d);
+int						ph_init_forks(t_dinner *d);
+int						ph_init_philos(t_dinner *d);
+
+// THREADS
+
+int						ph_start_threads(t_dinner *d);
+
+// ACTIONS
+
+void					ph_take_forks(t_philo *p);
+void					ph_eat(t_philo *p);
+void					ph_drop_forks(t_philo *p);
+void					ph_sleep(t_philo *p);
+void					ph_think(t_philo *p);
+
+// CLEANUP
+
+void					ph_free_arrays(t_dinner *d);
+void					ph_destroy_mutexes(t_dinner *d, int stage);
 
 #endif //!PHILO_H
