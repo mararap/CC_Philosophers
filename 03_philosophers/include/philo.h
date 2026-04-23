@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:14:34 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/22 21:06:10 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/23 12:39:58 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int						ph_init_philos(t_dinner *d);
 
 // THREADS
 
-int						ph_start_threads(t_dinner *d);
+int						ph_start_philo_threads(t_dinner *d);
+int						ph_is_sim_over(t_dinner *d);
 
 // ACTIONS
 
