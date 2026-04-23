@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:14:34 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/23 12:39:58 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/23 16:34:53 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <limits.h>
 # include <pthread.h>
-# include <sys/time.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/time.h>
 # include <unistd.h>
-# include <limits.h>
 
 typedef pthread_mutex_t	t_fork_lock;
 typedef struct s_philo	t_philo;
 typedef struct s_dinner	t_dinner;
 
-struct s_philo
+struct					s_philo
 {
 	int					id;
 	pthread_t			tid; // thread-handle
@@ -36,7 +36,7 @@ struct s_philo
 	t_dinner			*dinner;
 };
 
-struct s_dinner
+struct					s_dinner
 {
 	int					philo_count; // number of philos = number of forks
 	long long			time_to_die;
@@ -77,9 +77,13 @@ void					ph_drop_forks(t_philo *p);
 void					ph_sleep(t_philo *p);
 void					ph_think(t_philo *p);
 
+// MONITOR
+
+void					*ph_monitor(void *arg);
+
 // CLEANUP
 
 void					ph_free_arrays(t_dinner *d);
 void					ph_destroy_mutexes(t_dinner *d, int stage);
 
-#endif //!PHILO_H
+#endif //! PHILO_H

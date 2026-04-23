@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:12 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/23 14:14:51 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/23 16:30:05 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,50 +22,58 @@ static int	all_fed(t_dinner *d)
 	fed = 0;
 	if (d->meals_required == -1)
 		return (0);
-	pthread_mutex_lock(&d->meal_lock);
 	while (i < d->philo_count)
 	{
+		pthread_mutex_lock(&d->meal_lock);
 		if (d->philo_arr[i].meal_count >= d->meals_required)
 			fed++;
+		pthread_mutex_unlock(&d->meal_lock);
 		i++;
 	}
-	pthread_mutex_unlock(&d->meal_lock);
 	if (fed == d->philo_count)
 		return (1);
 	return (0);
+}
+
+static void	report_death(t_dinner *d, int id)
+{
+	long long	timestamp;
+
+	pthread_mutex_lock(&d->print_lock);
+	pthread_mutex_lock(&d->dead_lock);
+	timestamp = ph_get_time_ms() - d->start_time;
+	printf("%lld %d %s\n", timestamp, d->philo_arr[id].id, "died");
+	d->is_dead = 1;
+	pthread_mutex_unlock(&d->dead_lock);
+	pthread_mutex_unlock(&d->print_lock);
+}
+
+static void	stop_sim(t_dinner *d)
+{
+	pthread_mutex_lock(&d->dead_lock);
+	d->is_dead = 1;
+	pthread_mutex_unlock(&d->dead_lock);
 }
 
 void	*ph_monitor(void *arg)
 {
 	int			i;
 	t_dinner	*d;
-	long long	timestamp;
+	long long	last_meal;
 
 	d = (t_dinner *)arg;
-	i = 0;
-	while (!ph_is_sim_over)
+	while (!ph_is_sim_over(d))
 	{
+		i = 0;
 		while (i < d->philo_count)
 		{
 			pthread_mutex_lock(&d->meal_lock);
-			if ((ph_get_time_ms() - d->philo_arr[i].last_meal_time)
-				> d->time_to_die)
-			{
-				pthread_mutex_lock(&d->print_lock);
-				pthread_mutex_lock(&d->dead_lock);
-				timestamp = ph_get_time_ms() - d->start_time;
-				printf("%lld %d %s\n", timestamp, d->philo_arr[i].id, "died");
-				d->is_dead = 1;
-				pthread_mutex_unlock(&d->dead_lock);
-				pthread_mutex_unlock(&d->print_lock);
-			}
-			ph_mutex_unlock(&d->meal_lock);
+			last_meal = d->philo_arr[i].last_meal_time;
+			pthread_mutex_unlock(&d->meal_lock);
+			if ((ph_get_time_ms() - last_meal) > d->time_to_die)
+				report_death(d, i);
 			if (all_fed(d))
-			{
-				pthread_mutex_lock(&d->dead_lock);
-				d->is_dead = 1;
-				pthread_mutex_unlock(&d->dead_lock);
-			}
+				stop_sim(d);
 			i++;
 			usleep(500);
 		}

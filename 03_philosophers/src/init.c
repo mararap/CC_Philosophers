@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:01 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/22 20:15:49 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/23 16:29:43 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ph_init_dinner(t_dinner *d)
 {
 	d->philo_arr = NULL;
 	d->forks_arr = NULL;
-	
 	d->philo_arr = malloc(sizeof(t_philo) * d->philo_count);
 	if (!d->philo_arr)
 		return (1);
@@ -79,4 +78,3 @@ int	ph_init_philos(t_dinner *d)
 	}
 	return (0);
 }
-

@@ -6,7 +6,7 @@
 #    By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/20 21:31:57 by marapovi          #+#    #+#              #
-#    Updated: 2026/04/22 21:04:36 by marapovi         ###   ########.fr        #
+#    Updated: 2026/04/23 16:35:09 by marapovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,6 @@ SRC 	:= 		main.c \
 				threads.c \
 				monitor.c \
 				utils.c \
-				error.c \
 				cleanup.c \
 				actions.c
 
