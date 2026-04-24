@@ -6,11 +6,10 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:07 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/23 16:36:47 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:28:39 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Entry point
 #include "philo.h"
 
 // check number of arguments
@@ -44,8 +43,7 @@ static int	ph_parse_av(int ac, char **av, t_dinner *d)
 
 // initalize data
 // run/start monitor
-// create philo threads
-// run routine for each philo
+// run philo threads
 // wait for threads with pthread_join
 // cleanup
 int	main(int ac, char **av)

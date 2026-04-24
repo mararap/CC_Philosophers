@@ -6,11 +6,11 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:01 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/23 16:29:43 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/24 21:54:49 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Initialization (parsing, struct setup)
+// Initialization (struct setup)
 #include "philo.h"
 
 int	ph_init_dinner(t_dinner *d)
@@ -37,26 +37,24 @@ int	ph_init_dinner(t_dinner *d)
 		return (1);
 	}
 	d->is_dead = 0;
+	d->forks_init_count = 0;
 	return (0);
 }
 
 int	ph_init_forks(t_dinner *d)
 {
-	int	i;
-
-	i = 0;
-	while (i < d->philo_count)
+	while (d->forks_init_count < d->philo_count)
 	{
-		if (pthread_mutex_init(&d->forks_arr[i], NULL) != 0)
+		if (pthread_mutex_init(&d->forks_arr[d->forks_init_count], NULL) != 0)
 		{
-			while (i > 0)
+			while (d->forks_init_count > 0)
 			{
-				i--;
-				pthread_mutex_destroy(&d->forks_arr[i]);
+				d->forks_init_count--;
+				pthread_mutex_destroy(&d->forks_arr[d->forks_init_count]);
 			}
 			return (1);
 		}
-		i++;
+		d->forks_init_count++;
 	}
 	return (0);
 }

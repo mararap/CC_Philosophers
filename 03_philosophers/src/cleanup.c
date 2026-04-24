@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:10:50 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/23 15:50:40 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/24 21:52:29 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ph_free_arrays(t_dinner *d)
 	i = 0;
 	if (d->forks_arr)
 	{
-		while (i < d->philo_count)
+		while (i < d->forks_init_count)
 		{
 			pthread_mutex_destroy(&d->forks_arr[i]);
 			i++;

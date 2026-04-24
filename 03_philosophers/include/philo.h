@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:14:34 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/23 16:34:53 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/24 21:45:13 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ struct					s_dinner
 	int					meals_required;
 	t_philo				*philo_arr;
 	t_fork_lock			*forks_arr;
+	int					forks_init_count;
 	int					is_dead;
 	pthread_mutex_t		print_lock;
 	pthread_mutex_t		dead_lock;
