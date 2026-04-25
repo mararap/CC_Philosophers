@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:14:34 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/24 21:45:13 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/25 16:03:48 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <limits.h>
+# include <limits.h>	// 
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <sys/time.h>
-# include <unistd.h>
+# include <sys/time.h>	//get_time_
+# include <unistd.h>	// usleep
 
 typedef pthread_mutex_t	t_fork_lock;
 typedef struct s_philo	t_philo;
