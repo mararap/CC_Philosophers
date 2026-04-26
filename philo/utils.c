@@ -6,11 +6,12 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:22 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/10 10:09:48 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/26 23:39:46 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// globally used helpers
+/* globally used helpers */
+
 #include "philo.h"
 
 static char	is_usign_digit(char c)
@@ -27,6 +28,8 @@ int	ph_atoui(const char *str)
 
 	i = 0;
 	result = 0;
+	if (!str || str[0] == '\0')
+		return (-1);
 	while (str[i])
 	{
 		if (!is_usign_digit(str[i]))

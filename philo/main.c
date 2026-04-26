@@ -6,15 +6,16 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:07 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/24 19:28:39 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/26 23:39:06 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// check number of arguments
-// check validity of arguments
-// parse arguments
+/* check number of arguments
+check validity of arguments
+parse arguments */
+
 static int	ph_parse_av(int ac, char **av, t_dinner *d)
 {
 	int	i;
@@ -41,11 +42,12 @@ static int	ph_parse_av(int ac, char **av, t_dinner *d)
 	return (0);
 }
 
-// initalize data
-// run/start monitor
-// run philo threads
-// wait for threads with pthread_join
-// cleanup
+/* initalize data
+run/start monitor
+run philo threads
+wait for threads with pthread_join
+cleanup */
+
 int	main(int ac, char **av)
 {
 	t_dinner	dinner;

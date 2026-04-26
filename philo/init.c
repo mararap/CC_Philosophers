@@ -6,11 +6,12 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:01 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/24 21:54:49 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/26 23:40:28 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Initialization (struct setup)
+/* Initialization (struct setup) */
+
 #include "philo.h"
 
 int	ph_init_dinner(t_dinner *d)
@@ -59,7 +60,7 @@ int	ph_init_forks(t_dinner *d)
 	return (0);
 }
 
-int	ph_init_philos(t_dinner *d)
+void	ph_init_philos(t_dinner *d)
 {
 	int	i;
 
@@ -74,5 +75,4 @@ int	ph_init_philos(t_dinner *d)
 		d->philo_arr[i].dinner = d;
 		i++;
 	}
-	return (0);
 }

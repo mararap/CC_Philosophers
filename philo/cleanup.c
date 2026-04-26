@@ -6,11 +6,12 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:10:50 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/24 21:52:29 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/26 23:30:44 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Resource cleanup/freeing
+/* Resource cleanup/freeing */
+
 #include "philo.h"
 
 void	ph_free_arrays(t_dinner *d)

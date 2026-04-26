@@ -6,9 +6,11 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 20:52:36 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/26 21:32:54 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/27 00:59:10 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* what philos do */
 
 #include "philo.h"
 
@@ -47,7 +49,7 @@ void	ph_eat(t_philo *p)
 	}
 	pthread_mutex_lock(&p->dinner->meal_lock);
 	start = p->last_meal_time;
-	pthread_mutex_unlock(&p->dinner->meal_lock);	
+	pthread_mutex_unlock(&p->dinner->meal_lock);
 	ph_print_status(p, "is eating");
 	while (ph_get_time_ms() < start + p->dinner->time_to_eat
 		&& !ph_is_sim_over(p->dinner))
@@ -82,11 +84,11 @@ void	ph_think(t_philo *p)
 
 	start = ph_get_time_ms();
 	ph_print_status(p, "is thinking");
-	if (p->dinner->philo_count % 2 == 1)
-	{
-		think = p->dinner->time_to_eat * 2 - p->dinner->time_to_sleep;
-		while(think > 0 && ph_get_time_ms() < start + think
-			&& !ph_is_sim_over(p->dinner))
-			usleep(75);
-	}
+	if (p->dinner->philo_count % 2 == 0)
+		think = 1;
+	else
+		think = p->dinner->time_to_eat - p->dinner->time_to_sleep + 1;
+	while (think > 0 && ph_get_time_ms() < start + think
+		&& !ph_is_sim_over(p->dinner))
+		usleep(75);
 }
