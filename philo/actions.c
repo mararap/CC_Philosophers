@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 20:52:36 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/26 21:39:15 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/26 21:32:54 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ph_eat(t_philo *p)
 	if (p->dinner->philo_count == 1)
 	{
 		while (!ph_is_sim_over(p->dinner))
-			usleep(75);
+			usleep(500);
 		return ;
 	}
 	pthread_mutex_lock(&p->dinner->meal_lock);

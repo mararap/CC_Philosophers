@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:12 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/26 21:39:15 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/04/26 21:20:07 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	*ph_monitor(void *arg)
 		}
 		if (all_fed(d))
 			stop_sim(d);
-		usleep(75);
+		usleep(500);
 	}
 	return (NULL);
 }
