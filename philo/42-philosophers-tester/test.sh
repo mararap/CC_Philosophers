@@ -58,7 +58,7 @@ if [ "$#" -gt 1 ]; then
 	printf "Invalid input!\n"
 	exit
 elif [ "$#" -lt 1 ]; then
-	philo=../philo
+	philo=./philo
 else
     philo=$1
 fi
