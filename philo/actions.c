@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 20:52:36 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/02 23:19:14 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/03 00:26:55 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,17 @@ void	ph_take_forks(t_philo *p)
 		second = p->left;
 	}
 	pthread_mutex_lock(first);
-	ph_print_status(p, "has taken left fork");
 	if (p->dinner->philo_count == 1)
+	{
+		ph_print_status(p, "has taken a fork");
 		return ;
+	}
 	pthread_mutex_lock(second);
 	pthread_mutex_lock(&p->dinner->meal_lock);
 	p->last_meal_time = ph_get_time_ms();
 	pthread_mutex_unlock(&p->dinner->meal_lock);
-	ph_print_status(p, "has taken right fork");
+	ph_print_status(p, "has taken a fork");
+	ph_print_status(p, "has taken a fork");
 }
 
 void	ph_eat(t_philo *p)
