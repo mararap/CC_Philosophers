@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 20:52:36 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/02 20:35:49 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/02 21:36:41 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ void	ph_eat(t_philo *p)
 	end = start + p->dinner->time_to_eat;
 	ph_print_status(p, "is eating");
 	while (ph_get_time_ms() < end && !ph_is_sim_over(p->dinner))
-		if (end - ph_get_time_ms() > 1)
-			usleep(500);
+		usleep(75);
 	pthread_mutex_lock(&p->dinner->meal_lock);
 	p->meal_count++;
 	pthread_mutex_unlock(&p->dinner->meal_lock);
@@ -77,8 +76,7 @@ void	ph_sleep(t_philo *p)
 	end = start + p->dinner->time_to_sleep;
 	ph_print_status(p, "is sleeping");
 	while (ph_get_time_ms() < end && !ph_is_sim_over(p->dinner))
-		if (end - ph_get_time_ms() > 1)
-			usleep(500);
+		usleep(75);
 }
 
 void	ph_think(t_philo *p)
@@ -95,6 +93,5 @@ void	ph_think(t_philo *p)
 		think = p->dinner->time_to_eat - p->dinner->time_to_sleep + 1;
 	end = start + think;
 	while (think > 0 && ph_get_time_ms() < end && !ph_is_sim_over(p->dinner))
-		if (end - ph_get_time_ms() > 1)
-			usleep(500);
+		usleep(75);
 }

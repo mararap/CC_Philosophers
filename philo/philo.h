@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:14:34 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/02 20:16:56 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/02 20:52:25 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ struct					s_dinner
 
 int						ph_atoui(const char *str);
 long long				ph_get_time_ms(void);
-void					ph_precise_sleep(long long duration);
 void					ph_print_status(t_philo *philo, char *msg);
 
 /* INIT */
