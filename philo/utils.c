@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:22 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/26 23:39:46 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/02 20:16:20 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,18 @@ long long	ph_get_time_ms(void)
 
 	gettimeofday(&tv, NULL);
 	return ((long long)tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	ph_precise_sleep(long long duration)
+{
+	long long	end;
+
+	end = ph_get_time_ms() + duration;
+	while (ph_get_time_ms() < end)
+	{
+		if (end - ph_get_time_ms() > 1)
+			usleep(500);
+	}
 }
 
 void	ph_print_status(t_philo *philo, char *msg)
