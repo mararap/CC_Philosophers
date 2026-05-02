@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:22 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/02 20:41:26 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/02 23:27:28 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,11 @@ void	ph_print_status(t_philo *philo, char *msg)
 	long long	timestamp;
 
 	pthread_mutex_lock(&philo->dinner->print_lock);
-	pthread_mutex_lock(&philo->dinner->dead_lock);
 	if (philo->dinner->is_dead)
 	{
-		pthread_mutex_unlock(&philo->dinner->dead_lock);
 		pthread_mutex_unlock(&philo->dinner->print_lock);
 		return ;
 	}
-	pthread_mutex_unlock(&philo->dinner->dead_lock);
 	timestamp = ph_get_time_ms() - philo->dinner->start_time;
 	printf("%lld %d %s\n", timestamp, philo->id, msg);
 	pthread_mutex_unlock(&philo->dinner->print_lock);
