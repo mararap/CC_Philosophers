@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:12 by marapovi          #+#    #+#             */
-/*   Updated: 2026/04/27 01:05:42 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/03 15:02:10 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ static void	report_death(t_dinner *d, int id)
 
 static void	stop_sim(t_dinner *d)
 {
+	pthread_mutex_lock(&d->print_lock);
 	pthread_mutex_lock(&d->dead_lock);
 	d->is_dead = 1;
 	pthread_mutex_unlock(&d->dead_lock);
+	pthread_mutex_unlock(&d->print_lock);
 }
 
 void	*ph_monitor(void *arg)

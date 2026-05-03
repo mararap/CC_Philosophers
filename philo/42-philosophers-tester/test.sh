@@ -5,14 +5,14 @@ count_correct_all=0
 count_false_all=0
 iterations=10
 times_to_eat=10
-folder=fails/
+folder="fails_$(date +%m-%d_%H%M)/"
 tempfile=tempfile
 
 function cleanup()
 {
     rm -f $tempfile
-    if [ -z "$(ls -A fails)" ]; then
-        rm -rf fails
+    if [ -z "$(ls -A $folder)" ]; then
+        rm -rf $folder
     fi
 }
 trap cleanup EXIT
@@ -104,7 +104,7 @@ visualizer () {
             exit 0
 			;;
     	2)
-            rm -rf fails
+            rm -rf $folder
 			;;
 		$'\e')
             printf "\e[1;1H\e[2J"
@@ -495,8 +495,8 @@ rm -f test
 printf "\n${BOLD}RESULT: passed: ${count_correct_all}\tfailed: ${count_false_all}${RESET}\n"
 print_percent `awk -v count="$count_correct_all" -v tests_fail="$count_false_all" 'BEGIN {print 100 / (count + tests_fail) * count}'`
 
-if [ -z "$(ls -A fails)" ]; then
-   rm -rf fails
+if [ -z "$(ls -A $folder)" ]; then
+   rm -rf $folder
 fi
 
 # if [ -d "fails" ]; then

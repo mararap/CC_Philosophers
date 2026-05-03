@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:17 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/03 00:23:46 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/03 15:03:42 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@ int	ph_start_philo_threads(t_dinner *d)
 		if (pthread_create(&d->philo_arr[i].tid, NULL, ph_routine,
 				&d->philo_arr[i]) != 0)
 		{
+			pthread_mutex_lock(&d->print_lock);
 			pthread_mutex_lock(&d->dead_lock);
 			d->is_dead = 1;
 			pthread_mutex_unlock(&d->dead_lock);
+			pthread_mutex_unlock(&d->print_lock);
 			ph_join_threads(d, i - 1);
 			return (1);
 		}
