@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 14:14:34 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/03 16:59:21 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/03 22:45:57 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ struct					s_philo
 	int					id;
 	pthread_t			tid;
 	long long			last_meal_time;
-	int					meal_count;
+	long long			meal_count;
 	t_fork_lock			*left;
 	t_fork_lock			*right;
 	t_dinner			*dinner;
@@ -56,8 +56,8 @@ struct					s_dinner
 
 /* UTILS */
 
-int						ph_atoui(const char *str);
-long long				ph_get_time_ms(void);
+long long				ph_atoull(const char *str);
+long long				ph_get_time_us(void);
 void					ph_print_status(t_philo *philo, char *msg);
 
 /* INIT */

@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:07 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/03 14:03:36 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/03 22:58:05 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ static int	ph_parse_av(int ac, char **av, t_dinner *d)
 	i = 1;
 	while (i < ac)
 	{
-		if (ph_atoui(av[i]) == -1)
+		if (ph_atoull(av[i]) == -1)
 			return (write(2, "invalid argument(s)\n", 20), 1);
 		i++;
 	}
-	d->philo_count = ph_atoui(av[1]);
+	d->philo_count = (int)ph_atoull(av[1]);
 	if (d->philo_count <= 0)
 		return (write(2, "invalid argument(s)\n", 20), 1);
-	d->time_to_die = ph_atoui(av[2]);
-	d->time_to_eat = ph_atoui(av[3]);
-	d->time_to_sleep = ph_atoui(av[4]);
+	d->time_to_die = ph_atoull(av[2]);
+	d->time_to_eat = ph_atoull(av[3]);
+	d->time_to_sleep = ph_atoull(av[4]);
 	if (ac == 6)
-		d->meals_required = ph_atoui(av[5]);
+		d->meals_required = (int)ph_atoull(av[5]);
 	else
 		d->meals_required = -1;
 	return (0);
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 		return (1);
 	if (ph_init_forks(&dinner) != 0)
 		return (ph_destroy_mutexes(&dinner, 3), 1);
-	dinner.start_time = ph_get_time_ms();
+	dinner.start_time = ph_get_time_us();
 	ph_init_philos(&dinner);
 	if (pthread_create(&monitor_tid, NULL, ph_monitor, &dinner) != 0)
 		return (ph_destroy_mutexes(&dinner, 3), 1);

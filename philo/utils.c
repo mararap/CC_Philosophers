@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:22 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/02 23:27:28 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/03 23:15:40 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	is_usign_digit(char c)
 	return (0);
 }
 
-int	ph_atoui(const char *str)
+long long	ph_atoull(const char *str)
 {
 	int			i;
 	long int	result;
@@ -42,12 +42,12 @@ int	ph_atoui(const char *str)
 	return (result);
 }
 
-long long	ph_get_time_ms(void)
+long long	ph_get_time_us(void)
 {
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return ((long long)tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	return (long long)((tv.tv_sec * 1000000 + tv.tv_usec));
 }
 
 void	ph_print_status(t_philo *philo, char *msg)
@@ -60,7 +60,7 @@ void	ph_print_status(t_philo *philo, char *msg)
 		pthread_mutex_unlock(&philo->dinner->print_lock);
 		return ;
 	}
-	timestamp = ph_get_time_ms() - philo->dinner->start_time;
+	timestamp = (ph_get_time_us() - philo->dinner->start_time);
 	printf("%lld %d %s\n", timestamp, philo->id, msg);
 	pthread_mutex_unlock(&philo->dinner->print_lock);
 }

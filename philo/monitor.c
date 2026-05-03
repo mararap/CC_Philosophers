@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:12 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/03 21:24:36 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/03 23:15:12 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	report_death(t_dinner *d, int id)
 {
 	long long	timestamp;
 
-	timestamp = ph_get_time_ms() - d->start_time;
+	timestamp = (ph_get_time_us() - d->start_time);
 	pthread_mutex_lock(&d->print_lock);
 	pthread_mutex_lock(&d->dead_lock);
 	if (!d->is_dead)
@@ -76,7 +76,7 @@ void	*ph_monitor(void *arg)
 			pthread_mutex_lock(&d->meal_lock);
 			last_meal = d->philo_arr[i].last_meal_time;
 			pthread_mutex_unlock(&d->meal_lock);
-			if ((ph_get_time_ms() - last_meal) > d->time_to_die
+			if ((ph_get_time_us() - last_meal) > d->time_to_die
 				&& !ph_is_sim_over(d))
 				report_death(d, i);
 			i++;
