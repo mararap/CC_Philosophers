@@ -1,0 +1,107 @@
+[
+  {
+    "file": "main.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "main.o",
+      "main.c"
+    ],
+    "directory": "/home/marapovi/CommonCore_gh/philo",
+    "output": "main.o"
+  },
+  {
+    "file": "init.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "init.o",
+      "init.c"
+    ],
+    "directory": "/home/marapovi/CommonCore_gh/philo",
+    "output": "init.o"
+  },
+  {
+    "file": "monitor.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "monitor.o",
+      "monitor.c"
+    ],
+    "directory": "/home/marapovi/CommonCore_gh/philo",
+    "output": "monitor.o"
+  },
+  {
+    "file": "threads.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "threads.o",
+      "threads.c"
+    ],
+    "directory": "/home/marapovi/CommonCore_gh/philo",
+    "output": "threads.o"
+  },
+  {
+    "file": "actions.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "actions.o",
+      "actions.c"
+    ],
+    "directory": "/home/marapovi/CommonCore_gh/philo",
+    "output": "actions.o"
+  },
+  {
+    "file": "utils.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "utils.o",
+      "utils.c"
+    ],
+    "directory": "/home/marapovi/CommonCore_gh/philo",
+    "output": "utils.o"
+  },
+  {
+    "file": "cleanup.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-c",
+      "-o",
+      "cleanup.o",
+      "cleanup.c"
+    ],
+    "directory": "/home/marapovi/CommonCore_gh/philo",
+    "output": "cleanup.o"
+  }
+]
