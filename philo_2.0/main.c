@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 13:41:38 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/04 13:58:03 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/04 14:22:05 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ int	main(int ac, char **av)
 {
 	t_dinner	dinner;
 	pthread_t	monitor_tid;
-	
-	if(ph_parse_args(ac, av, &dinner) != 0)
+
+	if (ph_parse_args(ac, av, &dinner) != 0)
 		return (1);
 	if (ph_init_dinner(&dinner) != 0)
 		return (1);
 	if (ph_init_forks(&dinner) != 0)
-		return(ph_cleanup(&dinner, 3), 1);
+		return (ph_cleanup(&dinner, 3), 1);
 	dinner.start_time = ph_get_time_us();
 	ph_init_philos(&dinner);
 	if (ptread_create(&monitor_tid, NULL, ph_monitor, &dinner) != 0)
