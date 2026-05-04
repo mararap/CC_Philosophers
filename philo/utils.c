@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:22 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/03 23:15:40 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/04 11:50:46 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	is_usign_digit(char c)
 long long	ph_atoull(const char *str)
 {
 	int			i;
-	long int	result;
+	long long	result;
 
 	i = 0;
 	result = 0;
@@ -61,6 +61,6 @@ void	ph_print_status(t_philo *philo, char *msg)
 		return ;
 	}
 	timestamp = (ph_get_time_us() - philo->dinner->start_time);
-	printf("%lld %d %s\n", timestamp, philo->id, msg);
+	printf("%lld %d %s\n", timestamp / 1000, philo->id, msg);
 	pthread_mutex_unlock(&philo->dinner->print_lock);
 }

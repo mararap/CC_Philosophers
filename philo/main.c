@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:07 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/03 22:58:05 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/04 11:43:49 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ph_parse_av(int ac, char **av, t_dinner *d)
 	int	i;
 
 	if (ac < 5 || ac > 6)
-		return (write(2, "wrong number of arguments\n", 26), 1);
+		return (write(2, "invalid number of arguments\n", 26), 1);
 	i = 1;
 	while (i < ac)
 	{
@@ -32,9 +32,9 @@ static int	ph_parse_av(int ac, char **av, t_dinner *d)
 	d->philo_count = (int)ph_atoull(av[1]);
 	if (d->philo_count <= 0)
 		return (write(2, "invalid argument(s)\n", 20), 1);
-	d->time_to_die = ph_atoull(av[2]);
-	d->time_to_eat = ph_atoull(av[3]);
-	d->time_to_sleep = ph_atoull(av[4]);
+	d->time_to_die = ph_atoull(av[2]) * 1000;
+	d->time_to_eat = ph_atoull(av[3])* 1000;
+	d->time_to_sleep = ph_atoull(av[4]) * 1000;
 	if (ac == 6)
 		d->meals_required = (int)ph_atoull(av[5]);
 	else

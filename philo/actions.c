@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/22 20:52:36 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/03 22:31:20 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/04 12:16:04 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ph_think(t_philo *p)
 	start = ph_get_time_us();
 	ph_print_status(p, "is thinking");
 	if (p->dinner->philo_count % 2 == 0)
-		think = 1;
+		think = 1000;
 	else
 		think = p->dinner->time_to_eat - p->dinner->time_to_sleep + 1;
 	end = start + think;

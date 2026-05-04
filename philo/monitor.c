@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 19:11:12 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/03 23:15:12 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/04 11:50:18 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ static void	report_death(t_dinner *d, int id)
 {
 	long long	timestamp;
 
-	timestamp = (ph_get_time_us() - d->start_time);
 	pthread_mutex_lock(&d->print_lock);
 	pthread_mutex_lock(&d->dead_lock);
+
 	if (!d->is_dead)
 	{
-		printf("%lld %d %s\n", timestamp, d->philo_arr[id].id, "died");
+		timestamp = (ph_get_time_us() - d->start_time);
+		printf("%lld %d %s\n", timestamp / 1000, d->philo_arr[id].id, "died");
 		d->is_dead = 1;
 	}
 	pthread_mutex_unlock(&d->dead_lock);
