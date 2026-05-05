@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 14:22:39 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/05 11:49:22 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/05 20:26:27 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ Parity-based deadlock prevention:
 	Odd ID -> right fork first, then left
 At every adjacent pair, one philosopher goes left-first and the
 other one goes right-first, so no circular wait can form.
+prints status with every locked fork. sets p->last_meal to current
+time at the very end.
  */
 void	ph_take_forks(t_philo *p)
 {
@@ -46,6 +48,12 @@ void	ph_take_forks(t_philo *p)
 	pthread_mutex_unlock(&p->dinner->meal_lock);
 }
 
+/* 
+if there's only one philo, it just waits until dinner is done
+aka the philo died of starvation.
+otherwise, prints is eating and "eats" for `tte`.
+increases p->meal_count by one under mutex lock.
+ */
 void	ph_eat(t_philo *p)
 {
 	if (p->dinner->philo_count == 1)
@@ -61,6 +69,9 @@ void	ph_eat(t_philo *p)
 	pthread_mutex_unlock(&p->dinner->meal_lock);
 }
 
+/* 
+unlocks forks mutexes (only one if philo_count = 1)
+ */
 void	ph_drop_forks(t_philo *p)
 {
 	pthread_mutex_unlock(p->left);
@@ -68,6 +79,9 @@ void	ph_drop_forks(t_philo *p)
 		pthread_mutex_unlock(p->right);
 }
 
+/* 
+prints "is sleeping" and "sleeps" for p->dinner->tts
+ */
 void	ph_sleep(t_philo *p)
 {
 	ph_print(p, "is sleeping");
