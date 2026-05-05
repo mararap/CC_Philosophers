@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 14:22:39 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/04 15:39:03 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/05 11:49:22 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ph_eat(t_philo *p)
 			usleep(500);
 		return ;
 	}
-	ph_print(p, "is_eating");
+	ph_print(p, "is eating");
 	ph_wait_us(p->dinner->tte, p->dinner);
 	pthread_mutex_lock(&p->dinner->meal_lock);
 	p->meal_count++;
@@ -78,6 +78,7 @@ void	ph_sleep(t_philo *p)
 Odd number of philos: one is always "left out" of each eating
 round. They must wait long enough for a neighbour to complete a full
 eat+sleep cycle before competing for the same fork again.
+
 Minimum	wait = (2 * tte) - tts (derived from cycle alignment);
 For even N, parity locking pairs everyone perfectly; no wait needed.
  */

@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 10:07:51 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/05 10:26:08 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/05 11:47:10 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	ph_init_dinner(t_dinner *d)
 	if (pthread_mutex_init(&d->print_lock, NULL) != 0)
 		return (free(d->forks), free(d->philos), 1);
 	if (pthread_mutex_init(&d->done_lock, NULL) != 0)
-		;
-	return (ph_cleanup(d, 1), 1);
+		return (ph_cleanup(d, 1), 1);
 	if (pthread_mutex_init(&d->meal_lock, NULL) != 0)
 		return (ph_cleanup(d, 2), 1);
 	return (0);

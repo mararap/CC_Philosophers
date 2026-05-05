@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 15:05:03 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/04 15:15:43 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/05 10:51:26 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ long long	ph_get_time_us(void)
 }
 
 /* Sleep for 'us' microseconds, waking early if simulation ends. */
-void	ph_wait(long long us, t_dinner *d)
+void	ph_wait_us(long long us, t_dinner *d)
 {
 	long long	end;
 
 	end = ph_get_time_us() + us;
 	while (ph_get_time_us() < end && !ph_is_done(d))
-		usleep(75);
+		usleep(100);
 }
 
 void	ph_print(t_philo *p, const char *msg)

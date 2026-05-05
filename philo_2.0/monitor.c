@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 09:52:29 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/05 10:07:35 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/05 10:47:40 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	all_fed(t_dinner *d)
 			fed++;
 		i++;
 	}
-	pthread_mutex_unlock(&d->philo_count);
+	pthread_mutex_unlock(&d->meal_lock);
 	if (fed == d->philo_count)
 		return (1);
 	return (0);
@@ -66,6 +66,7 @@ void	*ph_monitor(void *arg)
 	d = (t_dinner *)arg;
 	while (!ph_is_done(d))
 	{
+		i = 0;
 		while (i < d->philo_count)
 		{
 			pthread_mutex_lock(&d->meal_lock);
