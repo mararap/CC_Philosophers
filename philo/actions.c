@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 14:22:39 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/05 20:26:27 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/05 22:29:50 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,15 @@ For even N, parity locking pairs everyone perfectly; no wait needed.
 void	ph_think(t_philo *p)
 {
 	long long	think_us;
+	int			budget;
 
 	ph_print(p, "is thinking");
 	if (p->dinner->philo_count % 2 == 0)
 		return ;
 	think_us = 2 * p->dinner->tte - p->dinner->tts;
+	budget = p->dinner->ttd - p->dinner->tte - p->dinner->tts - 500;
+	if (think_us > budget)
+		think_us = budget;
 	if (think_us > 0)
 		ph_wait_us(think_us, p->dinner);
 }
