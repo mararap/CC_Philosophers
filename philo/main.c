@@ -12,9 +12,10 @@
 
 #include "philo.h"
 
-/* 
-checks for invalid input and saves values into designated variables
- */
+/*
+Validate CLI arguments and store parsed values in the dinner struct.
+Returns 0 on success and 1 on invalid input.
+*/
 static int	ph_parse_args(int ac, char **av, t_dinner *d)
 {
 	int	i;
@@ -44,14 +45,14 @@ static int	ph_parse_args(int ac, char **av, t_dinner *d)
 	return (0);
 }
 
-/* 
-launches, coordinates and finally exits the program:
-	1) parsing
-	2) initialisation of structs and variables
-	3) creates & joins threads
-	4) cleans up
-	5) returns 0 on success, 1 on error
- */
+/*
+Program flow:
+1) parse arguments
+2) initialize shared structures
+3) start monitor and philosopher threads
+4) wait for completion
+5) clean resources
+*/
 int	main(int ac, char **av)
 {
 	t_dinner	dinner;

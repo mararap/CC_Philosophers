@@ -6,12 +6,13 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 09:01:35 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/05 10:45:11 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/06 20:03:39 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/* Read simulation stop flag under mutex protection. */
 int	ph_is_done(t_dinner *d)
 {
 	int	result;
@@ -22,13 +23,10 @@ int	ph_is_done(t_dinner *d)
 	return (result);
 }
 
-/* 
-Staggert start: even-ID philosophers wait one tte before their first
-fork grab. This lets all odd-ID philosophers acquire their first fork
-uncontested, so the table reaches a stable alterning pattern from
-the very first round rather than having all philosophers compete for
-forks at the same time on startup.
- */
+/*
+Staggered start: even IDs wait one eat-time before first fork attempt.
+This reduces startup contention and helps reach a stable lock pattern early.
+*/
 static void	*ph_routine(void *arg)
 {
 	t_philo		*p;
@@ -55,6 +53,7 @@ static void	*ph_routine(void *arg)
 	return (NULL);
 }
 
+/* Join only the first n already-created threads (reverse order). */
 static void	ph_join_threads(t_dinner *d, int n)
 {
 	while (n > 0)
@@ -64,6 +63,7 @@ static void	ph_join_threads(t_dinner *d, int n)
 	}
 }
 
+/* Start all philosopher threads; on failure stop and join created ones. */
 int	ph_start_threads(t_dinner *d)
 {
 	int	i;

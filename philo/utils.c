@@ -12,6 +12,10 @@
 
 #include "philo.h"
 
+/*
+Parse a positive integer string into long long.
+Returns -1 on empty input, non-digit characters, or overflow above INT_MAX.
+*/
 long long	ph_atoull(const char *str)
 {
 	long long	result;
@@ -33,13 +37,10 @@ long long	ph_atoull(const char *str)
 	return (result);
 }
 
-/* 
-calls gettimeofday and adds up the returned secons - converted
-to microseconds - and the returned microseconds. this improves
-accuracy, because performing the calculations with milliseconds
-would cause rounding errors up to 1 microsecond per loop
-(adding up).
- */
+/*
+Return current time in microseconds using gettimeofday.
+Keeping all internal timing in us avoids precision loss from ms rounding.
+*/
 long long	ph_get_time_us(void)
 {
 	struct timeval	tv;
@@ -58,12 +59,11 @@ void	ph_wait_us(long long us, t_dinner *d)
 		usleep(100);
 }
 
-/* 
-prints status message under print_lock and done_lock if p->dinner->is_done
-still has value 0.
-as times are dealt in microseconds until here, the value of timestamp
-needs to be divided by 1000 to convert to milliseconds.
- */
+/*
+Print a state message while holding print and done mutexes.
+Output is suppressed once simulation is marked done.
+Timestamp is converted from us to ms for subject-compliant logs.
+*/
 void	ph_print(t_philo *p, const char *msg)
 {
 	long long	ts;

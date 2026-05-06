@@ -12,6 +12,7 @@
 
 #include "philo.h"
 
+/* Return 1 when every philosopher reached meals_required, else 0. */
 static int	all_fed(t_dinner *d)
 {
 	int	i;
@@ -34,6 +35,7 @@ static int	all_fed(t_dinner *d)
 	return (0);
 }
 
+/* Print the death message once and flip done flag atomically. */
 static void	report_death(t_dinner *d, int idx)
 {
 	long long	timestamp;
@@ -50,6 +52,7 @@ static void	report_death(t_dinner *d, int idx)
 	pthread_mutex_unlock(&d->print_lock);
 }
 
+/* Stop simulation without printing (used when all meals are completed). */
 static void	stop_sim(t_dinner *d)
 {
 	pthread_mutex_lock(&d->done_lock);
@@ -57,6 +60,11 @@ static void	stop_sim(t_dinner *d)
 	pthread_mutex_unlock(&d->done_lock);
 }
 
+/*
+Monitor loop:
+- detect starvation from last_meal timestamps
+- stop when all required meals are eaten
+*/
 void	*ph_monitor(void *arg)
 {
 	t_dinner	*d;
