@@ -6,15 +6,12 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 09:01:35 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/05 19:55:59 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/06 00:50:01 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/* 
-reads & returns value of d->is_done
- */
 int	ph_is_done(t_dinner *d)
 {
 	int	result;
@@ -45,7 +42,7 @@ static void	*ph_routine(void *arg)
 	{
 		end = ph_get_time_us() + p->dinner->tte;
 		while (ph_get_time_us() < end && !ph_is_done(p->dinner))
-			usleep(100);
+			usleep(75);
 	}
 	while (!ph_is_done(p->dinner))
 	{
