@@ -45,10 +45,21 @@ long long	ph_get_time_us(void)
 void	ph_wait_us(long long us, t_dinner *d)
 {
 	long long	end;
-
+	long long	now;
+	
 	end = ph_get_time_us() + us;
-	while (ph_get_time_us() < end && !ph_is_done(d))
-		usleep(100);
+	while (!ph_is_done(d))
+	{
+		now = ph_get_time_us();
+		if (now >= end)
+			break ;
+		if (end - now > 2000)
+			usleep(500);
+		if (end - now > 500)
+			usleep(100);
+		else
+			usleep(20);
+	}
 }
 
 void	ph_print(t_philo *p, const char *msg)

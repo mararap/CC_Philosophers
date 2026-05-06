@@ -32,18 +32,13 @@ forks at the same time on startup.
 static void	*ph_routine(void *arg)
 {
 	t_philo		*p;
-	long long	end;
 
 	p = (t_philo *)arg;
 	pthread_mutex_lock(&p->dinner->meal_lock);
 	p->last_meal = p->dinner->start_time;
 	pthread_mutex_unlock(&p->dinner->meal_lock);
-	if (p->id % 2 == 0)
-	{
-		end = ph_get_time_us() + p->dinner->tte;
-		while (ph_get_time_us() < end && !ph_is_done(p->dinner))
-			usleep(75);
-	}
+	if (p->id % 2)
+		ph_wait_us(p->dinner->tte / 2, p->dinner);
 	while (!ph_is_done(p->dinner))
 	{
 		ph_take_forks(p);

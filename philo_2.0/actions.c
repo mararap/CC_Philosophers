@@ -18,6 +18,8 @@ Parity-based deadlock prevention:
 	Odd ID -> right fork first, then left
 At every adjacent pair, one philosopher goes left-first and the
 other one goes right-first, so no circular wait can form.
+Prints status with every locked fork. Sets p->last_meal to current
+time at the very end.
  */
 void	ph_take_forks(t_philo *p)
 {
@@ -30,12 +32,12 @@ void	ph_take_forks(t_philo *p)
 		ph_print(p, "has taken a fork");
 		return ;
 	}
-	first = p->right;
-	second = p->left;
+	first = p->left;
+	second = p->right;
 	if (p->id % 2 == 0)
 	{
-		first = p->left;
-		second = p->right;
+		first = p->right;
+		second = p->left;
 	}
 	pthread_mutex_lock(first);
 	ph_print(p, "has taken a fork");
@@ -46,6 +48,12 @@ void	ph_take_forks(t_philo *p)
 	pthread_mutex_unlock(&p->dinner->meal_lock);
 }
 
+/* 
+if there's only one philo, it just waits until dinner is done
+aka the philo died of starvation.
+otherwise, prints is eating and "eats" for `tte`.
+increases p->meal_count by one under mutex lock.
+ */
 void	ph_eat(t_philo *p)
 {
 	if (p->dinner->philo_count == 1)
@@ -61,6 +69,9 @@ void	ph_eat(t_philo *p)
 	pthread_mutex_unlock(&p->dinner->meal_lock);
 }
 
+/* 
+unlocks forks mutexes (only one if philo_count = 1)
+ */
 void	ph_drop_forks(t_philo *p)
 {
 	pthread_mutex_unlock(p->left);
@@ -68,6 +79,9 @@ void	ph_drop_forks(t_philo *p)
 		pthread_mutex_unlock(p->right);
 }
 
+/* 
+prints "is sleeping" and "sleeps" for p->dinner->tts
+ */
 void	ph_sleep(t_philo *p)
 {
 	ph_print(p, "is sleeping");
@@ -90,6 +104,7 @@ void	ph_think(t_philo *p)
 	if (p->dinner->philo_count % 2 == 0)
 		return ;
 	think_us = 2 * p->dinner->tte - p->dinner->tts;
-	if (think_us > 0)
-		ph_wait_us(think_us, p->dinner);
+	if (think_us <= 0)
+		think_us = p->dinner->tte / 2;
+	ph_wait_us(think_us, p->dinner);
 }
