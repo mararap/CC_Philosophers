@@ -6,12 +6,15 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 13:41:38 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/05 10:42:48 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/06 19:51:52 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/* 
+checks for invalid input and saves values into designated variables
+ */
 static int	ph_parse_args(int ac, char **av, t_dinner *d)
 {
 	int	i;
@@ -41,6 +44,14 @@ static int	ph_parse_args(int ac, char **av, t_dinner *d)
 	return (0);
 }
 
+/* 
+launches, coordinates and finally exits the program:
+	1) parsing
+	2) initialisation of structs and variables
+	3) creates & joins threads
+	4) cleans up
+	5) returns 0 on success, 1 on error
+ */
 int	main(int ac, char **av)
 {
 	t_dinner	dinner;

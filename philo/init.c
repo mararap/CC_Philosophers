@@ -6,12 +6,20 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 10:07:51 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/05 11:47:10 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/06 19:52:33 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/* 
+initializes dinner struct:
+	sets variables/pointers to 0/NULL
+	allocates memory & checks for malloc failure
+	initializes threads & checks for failure
+	calls cleanup if needed
+	returns 0 on success, 1 on error
+ */
 int	ph_init_dinner(t_dinner *d)
 {
 	d->philos = NULL;
@@ -33,6 +41,14 @@ int	ph_init_dinner(t_dinner *d)
 	return (0);
 }
 
+/* 
+initializes forks array of mutexes:
+	loops until number of forks is equal to number of philos,
+	initializing one mutex in each loop and adding it to forks-array.
+	on failure, destroys as many fork mutexes as have been created by
+	looping over the array backwards.
+	returns 0 on success, 1 on error.
+ */
 int	ph_init_forks(t_dinner *d)
 {
 	while (d->forks_init < d->philo_count)
@@ -51,6 +67,12 @@ int	ph_init_forks(t_dinner *d)
 	return (0);
 }
 
+/* 
+initializes philo array of structs:
+	loops until number of philos is reached, filling each struct
+	with data. uses `% d->philo_count` to assign fork idx 0 to
+	first AND LAST philo.
+ */
 void	ph_init_philos(t_dinner *d)
 {
 	int	i;

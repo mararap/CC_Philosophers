@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 14:22:39 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/05 11:49:22 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/06 19:55:53 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ void	ph_take_forks(t_philo *p)
 	pthread_mutex_unlock(&p->dinner->meal_lock);
 }
 
+/* 
+if there's only one philo, it just waits until dinner is done
+aka the philo died of starvation.
+otherwise, prints is eating and "eats" for `tte`.
+increases p->meal_count by one under mutex lock.
+ */
 void	ph_eat(t_philo *p)
 {
 	if (p->dinner->philo_count == 1)
@@ -61,6 +67,9 @@ void	ph_eat(t_philo *p)
 	pthread_mutex_unlock(&p->dinner->meal_lock);
 }
 
+/* 
+unlocks forks mutexes (only one if philo_count = 1)
+ */
 void	ph_drop_forks(t_philo *p)
 {
 	pthread_mutex_unlock(p->left);
@@ -68,6 +77,9 @@ void	ph_drop_forks(t_philo *p)
 		pthread_mutex_unlock(p->right);
 }
 
+/* 
+prints "is sleeping" and "sleeps" for p->dinner->tts
+ */
 void	ph_sleep(t_philo *p)
 {
 	ph_print(p, "is sleeping");
