@@ -6,7 +6,7 @@
 /*   By: marapovi <marapovi@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 14:22:39 by marapovi          #+#    #+#             */
-/*   Updated: 2026/05/06 15:19:22 by marapovi         ###   ########.fr       */
+/*   Updated: 2026/05/06 16:26:44 by marapovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ void	ph_think(t_philo *p)
 
 	ph_print(p, "is thinking");
 	if (p->dinner->philo_count % 2 == 0)
-		return ;
+		think_us = 1;
 	think_us = 2 * p->dinner->tte - p->dinner->tts;
 	if (think_us <= 0)
-		think_us = 0;
+		think_us = 1;
 	ph_wait_us(think_us, p->dinner);
 }
